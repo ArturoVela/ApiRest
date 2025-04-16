@@ -1,4 +1,7 @@
 package api.rest.fisi.api.entity;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,6 +10,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "clientes")
+@SQLDelete(sql = "UPDATE clientes SET estado = 0 WHERE id = ?")
+@Where(clause = "estado = 1")  
+
 public class Clientes {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )

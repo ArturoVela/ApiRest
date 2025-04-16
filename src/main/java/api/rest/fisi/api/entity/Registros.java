@@ -4,6 +4,9 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 @Entity
 @Table (name = "registros")
+@SQLDelete(sql = "UPDATE registros SET estado = 0 WHERE idregistro = ?")
+@Where(clause = "estado = 1")  
 
 public class Registros {
     @Id

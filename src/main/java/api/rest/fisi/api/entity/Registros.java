@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -98,18 +99,8 @@ public class Registros {
      * * Genera una llave secreta utilizando SHA-256 basado en apellidos, correo electrónico y nombres.
      */
     public void setLlave_secreta(String llave_secreta) {
-        String datos = apellidos + email + nombres;
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        md.update(datos.getBytes());
-        byte[] digest = md.digest();
-        String result = new BigInteger(1, digest).toString(16).toLowerCase();
-        llave_secreta = result;
-        this.llave_secreta = llave_secreta;
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        this.llave_secreta = encoder.encode(llave_secreta);
     }
 
     public String getLlave_secreta() {

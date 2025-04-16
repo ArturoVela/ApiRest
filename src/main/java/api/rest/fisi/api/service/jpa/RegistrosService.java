@@ -9,34 +9,55 @@ import api.rest.fisi.api.repository.RegistrosRepository;
 import api.rest.fisi.api.entity.Registros;
 import api.rest.fisi.api.service.IRegistrosService;
 
-@Service // Indica que esta clase es un servicio de Spring
+/**
+ * ! Indica que esta clase es un servicio de Spring.
+ */
+@Service
 public class RegistrosService implements IRegistrosService {
 
-    @Autowired // Inyecta una instancia de RegistrosRepository
+    /**
+     * * Inyecta la dependencia del repositorio de Registros.
+     */
+    @Autowired
     private RegistrosRepository repoRegistros;
 
+    /**
+     * * Implementación del método para buscar todos los registros.
+     */
     @Override
     public List<Registros> buscarTodos() {
-        return repoRegistros.findAll(); // Usa el repositorio para obtener todos los registros
+        return repoRegistros.findAll();
     }
 
+    /**
+     * * Implementación del método para guardar un registro.
+     */
     @Override
     public void guardar(Registros registro) {
-        repoRegistros.save(registro); // Usa el repositorio para guardar un registro
+        repoRegistros.save(registro);
     }
 
+    /**
+     * * Implementación del método para modificar un registro.
+     */
     @Override
     public void modificar(Registros registro) {
-        repoRegistros.save(registro); // Usa el repositorio para actualizar un registro (guarda si no existe)
+        repoRegistros.save(registro);
     }
 
+    /**
+     * * Implementación del método para buscar un registro por su ID.
+     */
     @Override
     public Optional<Registros> buscarId(Integer id) {
-        return repoRegistros.findById(id); // Usa el repositorio para buscar un registro por su ID
+        return repoRegistros.findById(id);
     }
 
+    /**
+     * * Implementación del método para eliminar un registro por su ID.
+     */
     @Override
     public void eliminar(Integer id) {
-        repoRegistros.deleteById(id); // Usa el repositorio para eliminar un registro por su ID
+        repoRegistros.deleteById(id);
     }
 }

@@ -17,37 +17,62 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@RestController // Indica que esta clase es un controlador REST
-@RequestMapping("/restful") // Mapea las peticiones HTTP con la ruta base "/restful"
+/**
+ * ! Controlador REST para la entidad Registros.
+ */
+@RestController
+/**
+ * ? Define la ruta base para las peticiones a este controlador.
+ */
+@RequestMapping("/restful")
 public class RegistrosController {
 
-    @Autowired // Inyecta una instancia de IRegistrosService
+    /**
+     * * Inyecta el servicio para la lógica de negocio de Registros.
+     */
+    @Autowired
     private IRegistrosService serviceRegistros;
 
-    @GetMapping("/registros") // Mapea las peticiones GET a "/restful/registros"
+    /**
+     * * Endpoint para obtener todos los registros.
+     */
+    @GetMapping("/registros")
     public List<Registros> buscarTodos() {
-        return serviceRegistros.buscarTodos(); // Llama al servicio para obtener todos los registros
+        return serviceRegistros.buscarTodos();
     }
 
-    @PostMapping("/registros") // Mapea las peticiones POST a "/restful/registros"
+    /**
+     * * Endpoint para guardar un nuevo registro.
+     */
+    @PostMapping("/registros")
     public Registros guardar(@RequestBody Registros registro) {
-        serviceRegistros.guardar(registro); // Llama al servicio para guardar un nuevo registro
-        return registro; // Devuelve el registro guardado
+        serviceRegistros.guardar(registro);
+        return registro;
     }
 
-    @PutMapping("/registros") // Mapea las peticiones PUT a "/restful/registros"
+    /**
+     * * Endpoint para modificar un registro existente.
+     */
+    @PutMapping("/registros")
     public Registros modificar(@RequestBody Registros registro) {
-        serviceRegistros.modificar(registro); // Llama al servicio para modificar un registro existente
-        return registro; // Devuelve el registro modificado
+        serviceRegistros.modificar(registro);
+        return registro;
     }
 
-    @GetMapping("/registros/{id}") 
+    /**
+     * * Endpoint para obtener un registro por su ID.
+     */
+    @GetMapping("/registros/{id}")
     public Optional<Registros> buscarId(@PathVariable("id") Integer id) {
-        return serviceRegistros.buscarId(id); }
+        return serviceRegistros.buscarId(id);
+    }
 
-    @DeleteMapping("/registros/{id}") // Mapea las peticiones DELETE a "/restful/registros/{id}"
+    /**
+     * * Endpoint para eliminar un registro por su ID.
+     */
+    @DeleteMapping("/registros/{id}")
     public String eliminar(@PathVariable Integer id) {
-        serviceRegistros.eliminar(id); // Llama al servicio para eliminar un registro por su ID
-        return "Registro eliminado con exito"; // Devuelve un mensaje de éxito
+        serviceRegistros.eliminar(id);
+        return "Registro eliminado con exito";
     }
 }

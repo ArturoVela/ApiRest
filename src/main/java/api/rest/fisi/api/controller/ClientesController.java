@@ -17,46 +17,62 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
-
-
-
+/**
+ * ! Controlador REST para la entidad Clientes.
+ */
 @RestController
+/**
+ * ? Define la ruta base para las peticiones a este controlador.
+ */
 @RequestMapping("/restful")
 public class ClientesController {
 
+    /**
+     * * Inyecta el servicio para la lógica de negocio de Clientes.
+     */
     @Autowired
     private IClientesService serviceClientes;
 
+    /**
+     * * Endpoint para obtener todos los clientes.
+     */
     @GetMapping("/clientes")
     public List<Clientes> buscarTodos() {
         return serviceClientes.buscarTodos();
     }
 
+    /**
+     * * Endpoint para guardar un nuevo cliente.
+     */
     @PostMapping("/clientes")
     public Clientes guardar(@RequestBody Clientes cliente) {
         serviceClientes.guardar(cliente);
         return cliente;
     }
-  
 
-    @PutMapping("/clientes") 
+    /**
+     * * Endpoint para modificar un cliente existente.
+     */
+    @PutMapping("/clientes")
     public Clientes modificar(@RequestBody Clientes cliente) {
-        serviceClientes.modificar(cliente); 
-        return cliente; 
+        serviceClientes.modificar(cliente);
+        return cliente;
     }
 
-     @GetMapping("/clientes/{id}") 
+    /**
+     * * Endpoint para obtener un cliente por su ID.
+     */
+    @GetMapping("/clientes/{id}")
     public Optional<Clientes> buscarId(@PathVariable("id") Integer id) {
-    return serviceClientes.buscarId(id); }
+        return serviceClientes.buscarId(id);
+    }
 
+    /**
+     * * Endpoint para eliminar un cliente por su ID.
+     */
     @DeleteMapping("/clientes/{id}")
     public String eliminar(@PathVariable("id") Integer id) {
-        serviceClientes.eliminar(id); 
-        return "Cliente eliminado con exito"; 
+        serviceClientes.eliminar(id);
+        return "Cliente eliminado con exito";
     }
-
-
-
-
 }

@@ -12,8 +12,8 @@ public interface IRegistrosService {
 
     void modificar(Registros registro);
 
-    Optional<Registros> buscarId(Integer idcurso);
+    Optional<Registros> buscarId(Integer id);
     
-    void eliminar(Integer idcurso);
+    void eliminar(Integer id);
     
 }

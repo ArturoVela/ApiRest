@@ -1,4 +1,5 @@
 package api.rest.fisi.api.entity;
+
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -8,23 +9,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-/**
- * ! Indica que esta clase es una entidad JPA y se mapea a la tabla 'clientes'.
- */
 @Entity
 @Table(name = "clientes")
-/**
- * ? Define una consulta SQL para la eliminación lógica (actualiza el estado en lugar de eliminar).
- */
-@SQLDelete(sql = "UPDATE clientes SET estado = 0 WHERE id = ?")
-/**
- * ? Define una cláusula WHERE para filtrar y obtener solo registros con estado = 1 (activos).
- */
+@SQLDelete(sql = "UPDATE clientes SET estado=0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class Clientes {
-    /**
-     * * Clave primaria de la entidad, generada automáticamente por la base de datos.
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -115,4 +104,5 @@ public class Clientes {
                 + telefono1 + ", telefono2=" + telefono2 + ", pais=" + pais + ", direccion=" + direccion + ", estado="
                 + estado + "]";
     }
+
 }

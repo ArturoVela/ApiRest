@@ -10,17 +10,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig {
 @Bean
-public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtFilter jwtFilter) throws Exception {
-    http.csrf(csrf -> csrf.disable())
-        .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/restful/token","/restful/registros").permitAll()
+public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtFilter jwtFilter)
+    throws Exception{
+        http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> auth
+            .requestMatchers("/restful/token", "/restful/registros").permitAll()
             .anyRequest().authenticated()
-        )
-        .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
+            )
+            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        return http.build();    
+
     }
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 }

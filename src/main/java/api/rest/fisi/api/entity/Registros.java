@@ -14,23 +14,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-/**
- * ! Indica que esta clase es una entidad JPA y se mapea a la tabla 'registros'.
- */
 @Entity
 @Table(name = "registros")
-/**
- * ? Define una consulta SQL para la eliminación lógica (actualiza el estado en lugar de eliminar).
- */
-@SQLDelete(sql = "UPDATE registros SET estado = 0 WHERE idregistro = ?")
-/**
- * ? Define una cláusula WHERE para filtrar y obtener solo registros con estado = 1 (activos).
- */
+@SQLDelete(sql = "UPDATE registros SET estado=0 WHERE idregistro = ?")
 @Where(clause = "estado = 1")
 public class Registros {
-    /**
-     * * Clave primaria de la entidad, generada automáticamente por la base de datos.
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idregistro;
@@ -39,6 +27,7 @@ public class Registros {
     private String email;
     private String cliente_id;
     private String llave_secreta;
+    private String access_token;
     private Integer estado = 1;
 
     public Integer getIdregistro() {
@@ -73,9 +62,10 @@ public class Registros {
         this.email = email;
     }
 
-    /**
-     * * Genera un ID de cliente único utilizando SHA-256 basado en nombres, apellidos y correo electrónico.
-     */
+    public String getCliente_id() {
+        return cliente_id;
+    }
+
     public void setCliente_id(String cliente_id) {
         String datos = nombres + apellidos + email;
         MessageDigest md = null;
@@ -91,20 +81,13 @@ public class Registros {
         this.cliente_id = cliente_id;
     }
 
-    public String getCliente_id() {
-        return cliente_id;
+    public String getLlave_secreta() {
+        return llave_secreta;
     }
 
-    /**
-     * * Genera una llave secreta utilizando SHA-256 basado en apellidos, correo electrónico y nombres.
-     */
     public void setLlave_secreta(String llave_secreta) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         this.llave_secreta = encoder.encode(llave_secreta);
-    }
-
-    public String getLlave_secreta() {
-        return llave_secreta;
     }
 
     public Integer getEstado() {
@@ -115,10 +98,18 @@ public class Registros {
         this.estado = estado;
     }
 
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
+
     @Override
     public String toString() {
         return "Registros [idregistro=" + idregistro + ", nombres=" + nombres + ", apellidos=" + apellidos + ", email="
-                + email + ", cliente_id=" + cliente_id + ", llave_secreta=" + llave_secreta + ", estado=" + estado
-                + "]";
+                + email + ", cliente_id=" + cliente_id + ", llave_secreta=" + llave_secreta + ", access_token="
+                + access_token + ", estado=" + estado + "]";
     }
 }

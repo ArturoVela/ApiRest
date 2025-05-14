@@ -4,32 +4,16 @@ import java.util.Optional;
 
 import api.rest.fisi.api.entity.Registros;
 
-/**
- * ! Define los servicios (operaciones de negocio) para la entidad Registros.
- */
 public interface IRegistrosService {
-    /**
-     * * Lista todos los registros de la tabla.
-     */
+    // Listar todos los registros de la tabla
     List<Registros> buscarTodos();
-
-    /**
-     * * Guarda un nuevo registro en la tabla.
-     */
+    // Guarda los registros
     void guardar(Registros registro);
 
-    /**
-     * * Modifica un registro existente en la tabla.
-     */
     void modificar(Registros registro);
 
-    /**
-     * * Busca un registro por su ID.
-     */
-    Optional<Registros> buscarId(Integer id);
-
-    /**
-     * * Elimina un registro por su ID.
-     */
-    void eliminar(Integer id);
+    Optional<Registros> buscarId(Integer idcurso);
+    
+    void eliminar(Integer idcurso);
+    
 }

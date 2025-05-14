@@ -62,9 +62,20 @@ public class CursosController {
     }
 
     @PutMapping("/cursos")
-    public Cursos modificar(@RequestBody Cursos curso) {
-        serviceCursos.modificar(curso);
-        return curso;
+    public ResponseEntity<?> modificar(@RequestBody CursosDTO dto) {
+        if (dto.getIdcurso() == null) {
+            return ResponseEntity.badRequest().body("El idcurso no puede ser nulo");
+        }
+
+        Cursos curso = new Cursos();
+        curso.setIdcurso(dto.getIdcurso());
+        curso.setDescripcion(dto.getDescripcion());  
+        curso.setId_tipo(new TiposCurso(dto.getId_tipo()));
+        curso.setId_naturaleza(new NaturalezasCurso(dto.getId_naturaleza()));
+        curso.setId_categoria(new CategoriasCursos(dto.getId_categoria()));
+
+        return ResponseEntity.ok(serviceCursos.modificar(curso));
+
     }
 
     @GetMapping("/cursos/{id}")

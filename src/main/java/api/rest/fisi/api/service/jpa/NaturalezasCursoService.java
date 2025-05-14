@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import api.rest.fisi.api.entity.NaturalezasCurso;
 import api.rest.fisi.api.repository.NaturalezasCursoRepository;
+import api.rest.fisi.api.service.INaturalezasCursoService;
 
 @Service
-public class NaturalezasCursoService {
+public class NaturalezasCursoService implements INaturalezasCursoService{ 
+
      @Autowired
      private NaturalezasCursoRepository repoNaturalezasCurso;
         public List<NaturalezasCurso> buscarTodos(){

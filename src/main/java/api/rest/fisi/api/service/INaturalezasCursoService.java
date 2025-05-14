@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import api.rest.fisi.api.entity.NaturalezasCurso;
 
-public interface INaturalezaCursoService {
+public interface INaturalezasCursoService {
    // Listar todos los NaturalezasCurso de la tabla
     List<NaturalezasCurso> buscarTodos();
     // Guarda los NaturalezasCurso

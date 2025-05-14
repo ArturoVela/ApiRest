@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import api.rest.fisi.api.entity.TiposCurso;
 import api.rest.fisi.api.repository.TiposCursoRepository;
 import api.rest.fisi.api.service.ITiposCursoService;
+
 @Service
 public class TiposCursoService implements ITiposCursoService{
     @Autowired

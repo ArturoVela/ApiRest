@@ -19,7 +19,6 @@ import api.rest.fisi.api.service.ITiposCursoService;
 
 @RestController
 @RequestMapping("/restful")
-
 public class TiposCursoController {
     @Autowired
     private ITiposCursoService serviceTiposCurso;

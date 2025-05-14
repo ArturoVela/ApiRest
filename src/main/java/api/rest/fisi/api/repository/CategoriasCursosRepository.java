@@ -3,6 +3,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import api.rest.fisi.api.entity.CategoriasCursos;
 public interface CategoriasCursosRepository extends JpaRepository<CategoriasCursos, Integer> {
-    // Aquí puedes agregar métodos personalizados si es necesario
 
 }

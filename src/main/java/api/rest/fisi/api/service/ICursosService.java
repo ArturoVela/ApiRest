@@ -8,9 +8,9 @@ public interface ICursosService {
     // Listar todos los Cursos de la tabla
     List<Cursos> buscarTodos();
     // Guarda los Cursos
-    void guardar(Cursos curso);
+    Cursos guardar(Cursos curso);
     
-    void modificar(Cursos curso);
+    Cursos modificar(Cursos curso);
 
     Optional<Cursos> buscarId(Integer id);
     

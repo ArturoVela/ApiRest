@@ -15,16 +15,16 @@ public class CursosService implements ICursosService {
     public List<Cursos> buscarTodos(){
         return repoCursos.findAll();
     }
-    public void guardar(Cursos curso){
-        repoCursos.save(curso);
+    public Cursos guardar(Cursos curso){
+         return repoCursos.save(curso);
     }
-    public void modificar(Cursos curso){
-        repoCursos.save(curso);
+    public Cursos modificar(Cursos curso){
+        return repoCursos.save(curso);
     }
-    public Optional<Cursos> buscarId(Integer idcurso){
-        return repoCursos.findById(idcurso);
+    public Optional<Cursos> buscarId(Integer id){
+        return repoCursos.findById(id);
     }
-    public void eliminar(Integer idcurso){
-        repoCursos.deleteById(idcurso);
+    public void eliminar(Integer id){
+        repoCursos.deleteById(id);
     }
 }
